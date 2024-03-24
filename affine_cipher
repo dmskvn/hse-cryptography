@@ -1,0 +1,28 @@
+import sys
+import string
+
+crypt_map = {}
+decrypt_map = {}
+tokens = list(string.ascii_lowercase)
+m = len(tokens)
+
+a = int(sys.argv[1])
+b = int(sys.argv[2])
+mode = sys.argv[3]
+text = sys.argv[4]
+
+for decoded_char in string.ascii_lowercase: 
+    coded_char = tokens[(a * (ord(decoded_char) - ord('a')) + b) % m]
+    print(decoded_char, '<-!->', coded_char)
+    crypt_map[decoded_char] = coded_char
+    decrypt_map[coded_char] = decoded_char
+
+map = {}
+if mode == "code": map = crypt_map
+if mode == "decode": map = decrypt_map
+
+result = ""
+for char in text:
+    result += map[char]
+
+print ("Result:", result)

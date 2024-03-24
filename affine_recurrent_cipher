@@ -1,0 +1,49 @@
+import sys
+import string
+
+
+crypt_map = {}
+decrypt_map = {}
+tokens = list(string.ascii_lowercase)
+a = [int(sys.argv[1]), int(sys.argv[3])]
+b = [int(sys.argv[2]), int(sys.argv[4])]
+A = []
+mode = sys.argv[5]
+text = sys.argv[6]
+m = len(tokens)
+
+for i in range(2, len(text)):
+    a.append(a[i-2]*a[i-1] % m)
+    b.append((b[i-2]+b[i-1]) % m)
+
+def gcdex(a, b):
+    if a == 0 :
+        return b,0,1
+    gcd,x,y = gcdex(b%a, a)
+    return gcd, y - (b//a) * x, x
+
+def invmod(a, m):
+    g, x, y = gcdex (a, m)
+    return None if g > 1 else (x % m + m) % m
+
+for i in range(0, len(text)):
+    A.append(invmod(a[i], m))
+
+print(A)
+i = 0
+result = ""
+if mode == "code":
+    for char in text:
+        indx = ((ord(char)-ord('a'))*a[i]+b[i])%m
+        result += tokens[indx]
+        i = i + 1
+else:
+    print("decode")
+    for char in text:
+        result += tokens[(A[i]*(ord(char)-ord('a')-b[i]))%m]
+        i = i + 1 
+
+print ("Result:", result)
+
+    
+
