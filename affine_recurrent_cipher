@@ -30,6 +30,7 @@ for i in range(0, len(text)):
     A.append(invmod(a[i], m))
 
 print(A)
+
 i = 0
 result = ""
 if mode == "code":
