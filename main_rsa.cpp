@@ -87,9 +87,9 @@ int main(int argc, char* argv[])
             key = std::atol(key_str.c_str());
             block_size = std::atoi(block_size_str.c_str());
 
-            std::cout << common << std::endl;
-            std::cout << key << std::endl;
-            std::cout << block_size << std::endl;
+            //std::cout << common << std::endl;
+            //std::cout << key << std::endl;
+            //std::cout << block_size << std::endl;
             key_file.close();
         }
     }

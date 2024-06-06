@@ -114,7 +114,7 @@ uint64_t U64BlockReader::read(uint8_t n)
 {
     uint64_t mask = 0xFFFFFFFFFFFFFFFF;
     mask = mask >> (uint64_t(64) - n);
-    std::cout << uint64_t(mask) << std::endl;
+    //std::cout << uint64_t(mask) << std::endl;
     uint64_t result = _data & mask;
     _data = _data >> n;
     _cursor += n;
